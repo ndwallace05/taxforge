@@ -1,0 +1,49 @@
+Real-Time Audit: Are We Using Tax-Calculator & drake Correctly?
+Below is a four-step, copy-paste-ready checklist you can run after every form to verify the agent is pulling validated IRS rules from Tax-Calculator and reproducible pipelines from drake.
+1️⃣ Tax-Calculator Evidence
+Ensures line-level validation & calculations originate from the canonical repo.
+bash
+Copy
+# Run inside monorepo root
+git log --oneline --grep="tax-calc"   # should show commits like
+# 3a4b1c2 feat(1040): import Tax-Calculator policy 2024v1.0
+
+# Inspect generated JSON
+cat packages/irs-data/schemas/1040.json | jq '.[] | select(.source == "Tax-Calculator")'
+# Must return objects with "calcFormula" & "policyId" from Tax-Calculator
+✅ Green flag → every calculated line cites a Tax-Calculator policy ID.
+2️⃣ drake Evidence
+Guarantees reproducible, incremental builds (no re-runs unless code/data changes).
+bash
+Copy
+# From R console inside ./pipelines/
+library(drake)
+plan <- drake_plan(
+  schema = read_json("packages/irs-data/schemas/1040.json"),
+  ui     = make_1040_ui(schema),
+  tests  = test_1040(schema)
+)
+make(plan)                # first run → full build
+make(plan)                # second run → "✓ All targets up-to-date"
+✅ Green flag → second run skips unchanged targets.
+3️⃣ GitHub Actions Badge
+CI must fail if either source is missing or mis-used.
+yaml
+Copy
+# .github/workflows/audit.yml
+- name: Verify Tax-Calculator policy
+  run: |
+    python -c "import taxcalc; assert taxcalc.__version__ >= '3.5.0'"
+- name: Verify drake pipeline
+  run: |
+    R -e "library(drake); make(plan)"
+✅ Green badge → pipeline & policy locked.
+4️⃣ Audit Report File
+Auto-generated after every form.
+markdown
+Copy
+<!-- ./ai-agent-instructions/AUDIT-1040.md -->
+### Audit Report – Form 1040
+- **Tax-Calculator policy ID**: `p22` (line 9 calc), `p24` (line 11)  
+- **drake targets**: `schema`, `ui`, `tests` – all `✓ up-to-date`  
+- **CI status**: [![Audit](https://github.com/taxforge/taxforge/actions/workflows/audit.yml/badge.svg)](https://github.com/taxforge/taxforge/actions)

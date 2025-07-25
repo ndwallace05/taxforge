@@ -1,0 +1,11 @@
+
+> @taxforge/irs-data@0.1.0 build C:\Open file\frontend\packages\irs-data
+> tsc
+
+error TS6059: File 'C:/Open file/frontend/packages/irs-data/package.json' is not under 'rootDir' 'C:/Open file/frontend/packages/irs-data/src'. 'rootDir' is expected to contain all source files.
+  The file is in the program because:
+    Matched by include pattern '**/*.json' in 'C:/Open file/frontend/packages/irs-data/tsconfig.json'
+error TS6059: File 'C:/Open file/frontend/packages/irs-data/tsconfig.json' is not under 'rootDir' 'C:/Open file/frontend/packages/irs-data/src'. 'rootDir' is expected to contain all source files.
+  The file is in the program because:
+    Matched by include pattern '**/*.json' in 'C:/Open file/frontend/packages/irs-data/tsconfig.json'
+ ELIFECYCLE  Command failed with exit code 1.

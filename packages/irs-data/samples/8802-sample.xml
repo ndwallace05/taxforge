@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Return xmlns="http://www.irs.gov/efile" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ReturnHeader>
+    <TaxYr>2024</TaxYr>
+    <TaxPeriodBeginDt>2024-01-01</TaxPeriodBeginDt>
+    <TaxPeriodEndDt>2024-12-31</TaxPeriodEndDt>
+    <SoftwareId>TAXFORGE001</SoftwareId>
+    <SoftwareVersionNum>1.0</SoftwareVersionNum>
+  </ReturnHeader>
+  
+  <ReturnData>
+    <IRS8802>
+      <!-- Form 8802 data would be populated here -->
+      <SampleLineAmt>1000</SampleLineAmt>
+      <CalculatedLineAmt>100</CalculatedLineAmt>
+    </IRS8802>
+  </ReturnData>
+</Return>
