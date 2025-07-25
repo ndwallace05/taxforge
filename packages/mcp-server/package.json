@@ -1,18 +1,1 @@
-{
-  "name": "@taxforge/mcp-server",
-  "version": "1.0.0",
-  "type": "module",
-  "main": "dist/index.js",
-  "scripts": {
-    "build": "tsc",
-    "dev": "tsx src/index.ts"
-  },
-  "dependencies": {
-    "@modelcontextprotocol/sdk": "^0.5.0"
-  },
-  "devDependencies": {
-    "@types/node": "^20.8.0",
-    "tsx": "^4.15.7",
-    "typescript": "^5.5.0"
-  }
-}
+{"name":"@taxforge/mcp-server","version":"1.0.0","type":"module","main":"dist/index.js","scripts":{"build":"tsc","dev":"tsx src/index.ts"},"dependencies":{"@modelcontextprotocol/sdk":"^0.5.0"},"devDependencies":{"tsx":"^4.15.7","typescript":"^5.5.0","@types/node":"^20.14.0"}}
