@@ -1,5 +1,0 @@
-/* only local classes allowed */
-.printBody :global(body) {
-  font-size: 12pt;
-  color: #000;
-}

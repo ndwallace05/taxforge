@@ -1,6 +1,0 @@
-@media print {
-  :global(body) {
-    font-size: 12pt;
-    color: #000;
-  }
-}
